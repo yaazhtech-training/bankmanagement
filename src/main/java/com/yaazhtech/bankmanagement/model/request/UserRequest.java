@@ -3,7 +3,9 @@ package com.yaazhtech.bankmanagement.model.request;
 
 import lombok.Data;
 
-
+//fields client sends to create a user
+//ields client sends to create a user
+//model they are DTO data transfer objects
 /*Getters (to read data)
 Constructor: Used to create an object and initialize its values.
 Setters (to modify data)
