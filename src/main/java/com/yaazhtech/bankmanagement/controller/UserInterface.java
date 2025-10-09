@@ -6,31 +6,20 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/*
-BankInterface defines the REST endpoints for bank management operations.
-It acts as a blueprint (contract) for the controller class to implement.
-Each method corresponds to an API operation for managing bank accounts.
-*/
-
 public interface UserInterface {
 
-    // Create a new bank account
-    @PostMapping("/createAccount")
-    String createAccount(@RequestBody UserRequest userRequest);
+    @PostMapping("/save")
+    String createUser(@RequestBody UserRequest userRequest);
 
-    // Get details of all bank accounts
-    @GetMapping("/allAccounts")
-    List<PupilUser> getAllAccounts();
+    @GetMapping("/all")
+    List<PupilUser> getAllUsers();
 
-    // Get details of a specific account by ID
-    @GetMapping("/{accountId}")
-    PupilUser getAccountById(@PathVariable Long accountId);
+    @GetMapping("/{id}")
+    PupilUser getUserById(@PathVariable Long id);
 
-    // Delete an account by ID
-    @DeleteMapping("/{accountId}")
-    void deleteAccount(@PathVariable Long accountId);
+    @PutMapping("/{id}")
+    PupilUser updateUser(@PathVariable Long id, @RequestBody UserRequest updatedUser);
 
-    // Update account details
-    @PutMapping("/{accountId}")
-    PupilUser updateAccount(@PathVariable Long accountId, @RequestBody PupilUser updatedAccount);
+    @DeleteMapping("/{id}")
+    String deleteUser(@PathVariable Long id);
 }

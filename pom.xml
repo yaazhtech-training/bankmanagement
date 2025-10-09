@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>2.3.232</version>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
@@ -61,9 +61,10 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.30</version>
+			<version>1.18.30</version> <!-- use latest compatible version -->
 			<scope>provided</scope>
 		</dependency>
+
 
 
 

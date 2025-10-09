@@ -5,85 +5,69 @@ import com.yaazhtech.bankmanagement.model.request.UserRequest;
 import com.yaazhtech.bankmanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-import java.util.logging.Logger;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user/detail")
-public class UserController {
+public class UserController implements UserInterface {
 
     @Autowired
     private UserRepository userRepository;
 
-    // Manual logger (instead of @Slf4j)
-    private static final Logger logger = Logger.getLogger(UserController.class.getName());
-
-    // ---------------- CREATE USER ----------------
-    @PostMapping("/save")
+    @Override
     public String createUser(@RequestBody UserRequest userRequest) {
         PupilUser pupilUser = new PupilUser();
-
+        pupilUser.setPassword(userRequest.getPassword());
         pupilUser.setName(userRequest.getName());
         pupilUser.setEmail(userRequest.getEmail());
+        pupilUser.setUserName(userRequest.getUserName());
         pupilUser.setPhone(userRequest.getPhone());
+        pupilUser.setRole(userRequest.getRole());
         pupilUser.setAccountNumber(userRequest.getAccountNumber());
-        pupilUser.setPassword(userRequest.getPassword());
-        pupilUser.setRole("USER"); // default role
-        pupilUser.setUserName(userRequest.getName()); // optional
+        pupilUser.setOtpData(userRequest.getOtpData());
 
         userRepository.save(pupilUser);
-        logger.info("User saved successfully: " + pupilUser.getEmail());
-
-        return "User data has been saved successfully";
+        return "User saved successfully!";
     }
 
-    // ---------------- GET ALL USERS ----------------
-    @GetMapping("/all")
+    @Override
     public List<PupilUser> getAllUsers() {
-        logger.info("Fetching all users from database");
         return userRepository.findAll();
     }
 
-    // ---------------- GET USER BY ID ----------------
-    @GetMapping("/{id}")
+    @Override
     public PupilUser getUserById(@PathVariable Long id) {
-        logger.info("Fetching user with ID: " + id);
-        return userRepository.findById(id).orElse(null);
+        Optional<PupilUser> userOpt = userRepository.findById(id);
+        return userOpt.orElse(null);
     }
 
-    // ---------------- DELETE USER ----------------
-    @DeleteMapping("/{id}")
+    @Override
+    public PupilUser updateUser(@PathVariable Long id, @RequestBody UserRequest updatedUser) {
+        Optional<PupilUser> existingOpt = userRepository.findById(id);
+        if (existingOpt.isPresent()) {
+            PupilUser user = existingOpt.get();
+            user.setPassword(updatedUser.getPassword());
+            user.setName(updatedUser.getName());
+            user.setEmail(updatedUser.getEmail());
+            user.setUserName(updatedUser.getUserName());
+            user.setPhone(updatedUser.getPhone());
+            user.setRole(updatedUser.getRole());
+            user.setAccountNumber(updatedUser.getAccountNumber());
+            user.setOtpData(updatedUser.getOtpData());
+
+            return userRepository.save(user);
+        }
+        return null;
+    }
+
+    @Override
     public String deleteUser(@PathVariable Long id) {
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
-            logger.info("User deleted successfully with ID: " + id);
-            return "User deleted successfully";
-        } else {
-            logger.warning("Attempted to delete non-existing user with ID: " + id);
-            return "User not found";
+            return "User deleted successfully!";
         }
-    }
-
-    // ---------------- UPDATE USER ----------------
-    @PutMapping("/{id}")
-    public PupilUser updateUser(@PathVariable Long id, @RequestBody PupilUser updatedUser) {
-        logger.info("Updating user with ID: " + id);
-        PupilUser existingUser = userRepository.findById(id).orElse(null);
-
-        if (existingUser != null) {
-            existingUser.setName(updatedUser.getName());
-            existingUser.setEmail(updatedUser.getEmail());
-            existingUser.setPhone(updatedUser.getPhone());
-            existingUser.setAccountNumber(updatedUser.getAccountNumber());
-            existingUser.setPassword(updatedUser.getPassword());
-            existingUser.setRole(updatedUser.getRole());
-            existingUser.setUserName(updatedUser.getUserName());
-
-            logger.info("User updated successfully: " + existingUser.getEmail());
-            return userRepository.save(existingUser);
-        } else {
-            logger.warning("User not found for update with ID: " + id);
-            return null;
-        }
+        return "User not found!";
     }
 }
