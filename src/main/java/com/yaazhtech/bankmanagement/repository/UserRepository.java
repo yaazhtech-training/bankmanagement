@@ -1,12 +1,9 @@
 package com.yaazhtech.bankmanagement.repository;
 
-import com.yaazhtech.bankmanagement.data.UserData;
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
+import com.yaazhtech.bankmanagement.data.PupilUser;
 
-public interface UserRepository extends JpaRepository<UserData, Long>
-{
-
+public interface UserRepository extends JpaRepository<PupilUser, Long> {
+    Optional<PupilUser> findByEmail(String email);
 }
-// JpaRepository provides CRUD methods out-of-the-box
-// <UserData, Long> → UserData is the entity type, Long is the type of primary key
-// Methods like save(), findAll(), findById(), deleteById() are already available
