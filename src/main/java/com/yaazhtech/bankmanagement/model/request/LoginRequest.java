@@ -1,30 +1,25 @@
 package com.yaazhtech.bankmanagement.model.request;
 
-import lombok.Data;
-
-@Data
 public class LoginRequest {
-    private String email;
+
+    private String userName;
     private String password;
 
-    public String getEmail() {
-        return email;
-    }
+    // Default constructor
+    public LoginRequest() { }
 
-    public void setEmail(String email) {
-        this.email = email;
+    // Getters and setters
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public LoginRequest(String email, String password) {
-        this.email = email;
         this.password = password;
     }
 }

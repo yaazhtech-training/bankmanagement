@@ -1,0 +1,30 @@
+2025-10-09 20:52:35.486473+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM [*]USER WHERE username='preethiR'"; expected "identifier"; SQL statement:
+SELECT * FROM USER WHERE username='preethiR' [42001-232]
+2025-10-09 20:53:02.842783+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]DESCRIBE USER"; expected "DELETE, DROP"; SQL statement:
+DESCRIBE USER [42001-232]
+2025-10-09 20:53:14.842493+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]ID"; expected "INSERT"; SQL statement:
+ID [42001-232]
+2025-10-09 20:53:23.692798+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]BANK_USERS"; expected "BACKUP, BEGIN"; SQL statement:
+BANK_USERS [42001-232]
+2025-10-10 13:53:18.968758+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT*[*]FROMBANK_USERS"; SQL statement:
+SELECT*FROMBANK_USERS [42000-232]
+2025-10-10 13:56:50.354742+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]BANK_USERS"; expected "BACKUP, BEGIN"; SQL statement:
+BANK_USERS [42001-232]
+2025-10-10 13:57:34.719910+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "Update a user[*]’s phone\000d\000aUPDATE bank_users\000d\000aSET phone = '9998887777'\000d\000aWHERE user_name = 'tanvikaR'"; SQL statement:
+Update a user’s phone
+UPDATE bank_users
+SET phone = '9998887777'
+WHERE user_name = 'tanvikaR' [42000-232]
+2025-10-10 13:57:43.907012+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "Update a user[*]’s phone\000d\000aUPDATE bank_users\000d\000aSET phone = '9998887777'\000d\000aWHERE user_name = 'tanvikaR'"; SQL statement:
+Update a user’s phone
+UPDATE bank_users
+SET phone = '9998887777'
+WHERE user_name = 'tanvikaR' [42000-232]

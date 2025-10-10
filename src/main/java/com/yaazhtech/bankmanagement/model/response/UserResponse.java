@@ -2,7 +2,9 @@ package com.yaazhtech.bankmanagement.model.response;
 
 import com.yaazhtech.bankmanagement.data.PupilUser;
 
-
+//message → a text string you want to send, e.g., "User saved successfully!"
+//user → the actual PupilUser object containing user details
+//It’s just a container for sending structured data back to the client.
 
 public class UserResponse {
     private String message;
